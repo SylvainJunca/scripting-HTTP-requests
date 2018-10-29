@@ -1,5 +1,5 @@
 var https = require('https');   
-
+var buff = '';
 function getAndPrintHTMLChunks () {
 
     var requestOptions = {
@@ -10,10 +10,10 @@ function getAndPrintHTMLChunks () {
   https.get(requestOptions, function (response) {
     response.setEncoding('utf8');
     response.on('data', function (data) {
-        console.log(data + '\n');
+        buff += (data + '\n');
     });
     response.on('end', function() {
-      console.log('Response stream complete.');
+      console.log(buff + '\nResponse stream complete.');
     });
   })
 }
